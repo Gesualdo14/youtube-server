@@ -18,7 +18,11 @@ app.post("/resize",parseImage, async (req, res) => {
                 .resize(800, 800, {fit: 'contain', background: {r: 255, g: 255, b: 255, alpha: 1}}).toBuffer()
 
     const imageInBase64 = `${imageBuffer.toString('base64')}`
-    res.status(200).json({ok: true, image: imageInBase64 })
+    res.status(200).json({ok: true, 
+                          image: { "$content-type": 'image/png',
+                                   "$content": imageInBase64
+                                  }  
+                          })
 
 })
 
