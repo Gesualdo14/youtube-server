@@ -1,14 +1,20 @@
+// Importar librebrías que necesitamos en nuestro servidor
 const express = require("express");
 const sharp = require('sharp');
 const multer = require('multer')
 
-// Configuración de Multer
+// Configuración del middelware de procesamiento de imágenes Multer
 const storageType = multer.memoryStorage()
 const parseImage = multer({ storage: storageType }).single('image')
 
+// Inicializamos el servidor de Express
 const app = express();
 
-app.use(express.json());
+// Configuramos las rutas de nuestro servidor
+app.get("/", (req, res) => {
+    console.log("Entramos en el GET!!")
+    res.send("<h1>Tremendo, entramos en el GET!!!!</h1>")
+})
 
 app.post("/resize",parseImage, async (req, res) => {
     console.log(req.file)
@@ -26,19 +32,12 @@ app.post("/resize",parseImage, async (req, res) => {
 
 })
 
+// Seteamos en qué puerto va a estar escuchando nuestro servidor, 
+// tanto en Desarrollo como en producción
 app.set("port", process.env.PORT || 3000);
 
-app.get("/", (req, res) => {
-    console.log("Entramos en el GET!!")
-    res.send("<h1>Tremendo, entramos en el GET!!!!</h1>")
-})
-
-
-
+// Ponemos a nuestro servidor a escuchar en el puerto que seteamos
 app.listen(app.get("port"), () => {
-  console.log("###############################");
-  console.log("########## API REST ###########");
-  console.log("###############################");
 
   console.log(`Server escuchando en el puerto ${app.get("port")}`);
 });
