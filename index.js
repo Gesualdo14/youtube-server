@@ -28,12 +28,10 @@ app.post("/resize", parseImage, async (req, res) => {
     .toBuffer();
 
   const imageInBase64 = imageBuffer.toString("base64");
-  res
-    .status(200)
-    .json({
-      ok: true,
-      image: { "$content-type": "image/png", $content: imageInBase64 },
-    });
+  res.status(200).json({
+    ok: true,
+    image: { "$content-type": "image/png", $content: imageInBase64 },
+  });
 });
 
 // Seteamos en qué puerto va a estar escuchando nuestro servidor,
