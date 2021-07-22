@@ -1,4 +1,4 @@
-*Paso a paso para implentar nuestro primer servidor en Node JS
+#Paso a paso para implentar nuestro primer servidor en Node JS
 
 1) Instalar GIT
 2) Instalar Node JS
@@ -19,7 +19,7 @@
 
 Contenido del CUERPO del flujo de Power Automate:
 
-```
+```json
 {
   "$content-type": "multipart/form-data",
   "$multipart": [
